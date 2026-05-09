@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>For Vanita - Mother's Day</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400&family=Pinyon+Script&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcf9f2;
+            --text-main: #2c2826;
+            --text-muted: #6b635e;
+            --accent: #d4a373;
+            --accent-light: #eaddcf;
+            --glass-bg: rgba(255, 255, 255, 0.55);
+            --glass-border: rgba(212, 163, 115, 0.3);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-image: url('src/images/bg_image.jpeg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.24;
+            z-index: -1;
+            pointer-events: none;
+            filter: sepia(30%) contrast(90%);
+        }
+
+        h1, h2, h3, .serif {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .script {
+            font-family: 'Pinyon Script', cursive;
+        }
+
+        .petal-container {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .petal {
+            position: absolute;
+            background: linear-gradient(135deg, rgba(232, 186, 186, 0.6) 0%, rgba(212, 163, 115, 0.3) 100%);
+            border-radius: 15px 0 15px 0;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg) scale(0.5); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.5; }
+            100% { transform: translateY(110vh) rotate(360deg) scale(1); opacity: 0; }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .art-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem 0;
+            opacity: 0.7;
+        }
+        .art-divider::before, .art-divider::after {
+            content: "";
+            height: 1px;
+            width: 40px;
+            background: var(--accent);
+        }
+        .art-divider span {
+            margin: 0 15px;
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+
+        .hero {
+            height: 100dvh; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-date {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            line-height: 1;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            line-height: 1.6;
+            color: var(--text-muted);
+            font-style: italic;
+            padding: 0 1rem;
+        }
+
+        .image-block {
+            padding: 2rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .art-frame {
+            position: relative;
+            padding: 10px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 4px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+        }
+        
+        .art-frame::before {
+            content: "";
+            position: absolute;
+            top: 5px; left: 5px; right: 5px; bottom: 5px;
+            border: 1px solid rgba(212, 163, 115, 0.4);
+            pointer-events: none;
+        }
+
+        .art-frame img {
+            max-width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            filter: contrast(95%) sepia(10%);
+        }
+
+        .letter-section {
+            padding: 4rem 1.5rem;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            padding: 3.5rem 1.5rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            text-align: center;
+            max-width: 600px;
+            position: relative;
+        }
+
+        .glass-card::before { content: "❦"; position: absolute; top: 15px; left: 15px; color: var(--accent); font-size: 1.5rem; opacity: 0.6; }
+        .glass-card::after { content: "❦"; position: absolute; top: 15px; right: 15px; color: var(--accent); font-size: 1.5rem; opacity: 0.6; transform: scaleX(-1); }
+
+        .glass-card h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+
+        .glass-card p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: var(--text-main);
+            margin-bottom: 1.2rem;
+            font-weight: 300;
+        }
+
+        .tribute-block {
+            padding: 3rem 1.5rem;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            z-index: 1;
+            position: relative;
+        }
+
+        .tribute-block h3 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+            font-style: italic;
+        }
+
+        .tribute-block p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+
+        footer {
+            text-align: center;
+            padding: 4rem 1.5rem 8rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .serif-footer {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .signature {
+            font-size: 4.5rem;
+            color: var(--accent);
+            display: block;
+            margin-top: -0.5rem;
+            transform: rotate(-5deg);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="petal-container" id="petals"></div>
+
+    <section class="hero reveal">
+        <div class="script hero-date">Mother's Day</div>
+        <h1>For Vanita.</h1>
+        <div class="art-divider"><span>❀</span></div>
+        <p class="serif">Twenty-two years of me. A twin thrown in. And you still show up every day with a smile. I genuinely don't know how you do it.</p>
+    </section>
+
+    <div class="image-block reveal">
+        <div class="art-frame">
+            <img src="src/images/image_1.jpeg" alt="Memory 1">
+        </div>
+    </div>
+
+    <section class="letter-section reveal">
+        <div class="glass-card">
+            <h2>Hi Beena</h2>
+            <p>I've been meaning to write this for a while. Not because I had to - just because I wanted you to actually hear it for once, instead of me assuming you already know.</p>
+            <p>You sat with me through every subject I couldn't figure out on my own. Explained the same thing three different ways without making me feel stupid about it. I don't think I said thank you enough for that. I'm saying it now.</p>
+            <p>I turned 22 last October. You've had over two decades of me, plus my twin. That alone deserves some kind of recognition.</p>
+            <div class="art-divider"><span>❦</span></div>
+        </div>
+    </section>
+
+    <div class="image-block reveal">
+        <div class="art-frame">
+            <img src="src/images/image_2.jpeg" alt="Memory 2">
+        </div>
+    </div>
+
+    <section class="tribute-block reveal">
+        <h3>My First Teacher</h3>
+        <p>Before school got serious, before anyone else tried to teach me anything - you were already there, making sure I actually understood things. A lot of good maths I know quietly started with you.</p>
+        <div class="art-divider"><span>❀</span></div>
+    </section>
+
+    <div class="image-block reveal">
+        <div class="art-frame">
+            <img src="src/images/image_3.jpeg" alt="Memory 3">
+        </div>
+    </div>
+
+    <section class="tribute-block reveal">
+        <h3>Just the Everyday Stuff</h3>
+        <p>The cooking, the routines, the small things you did without ever making them feel like a big deal - that's the part I think about most. It adds up to a lot more than it looks like from the outside.</p>
+        <div class="art-divider"><span>❦</span></div>
+    </section>
+
+    <div class="image-block reveal">
+        <div class="art-frame">
+            <img src="src/images/image_4.jpeg" alt="Memory 4">
+        </div>
+    </div>
+
+    <section class="tribute-block reveal">
+        <h3>The Favourite Child Thing</h3>
+        <p>We both know i am your favourite kid 😉.</p>
+    </section>
+
+    
+
+    <footer class="reveal">
+        <div class="art-divider" style="margin-bottom: 3rem;"><span>❀</span></div>
+        <div class="serif-footer">Happy Mother's Day. </div>
+        <br/>
+        <div class="serif-footer">From - </div>
+        <span class="script signature">Pranav</span>
+    </footer>
+
+    <script>
+        const petalContainer = document.getElementById('petals');
+        const petalCount = 15;
+
+        for (let i = 0; i < petalCount; i++) {
+            let petal = document.createElement('div');
+            petal.classList.add('petal');
+            
+            let size = Math.random() * 15 + 10;
+            let leftPos = Math.random() * 100;
+            let duration = Math.random() * 8 + 7;
+            let delay = Math.random() * 10;
+
+            petal.style.width = `${size}px`;
+            petal.style.height = `${size}px`;
+            petal.style.left = `${leftPos}vw`;
+            petal.style.animationDuration = `${duration}s`;
+            petal.style.animationDelay = `-${delay}s`;
+
+            petalContainer.appendChild(petal);
+        }
+
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        };
+
+        const revealOptions = {
+            threshold: 0.15, 
+            rootMargin: "0px 0px -30px 0px"
+        };
+
+        const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        setTimeout(() => {
+            document.querySelector('.hero').classList.add('active');
+        }, 100);
+    </script>
+</body>
+</html>
